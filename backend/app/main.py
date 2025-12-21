@@ -4,9 +4,12 @@ from app.models import Base
 from app.routes import quiz
 
 
+from app.routes import question
+
 
 app = FastAPI(title="AI Assisted Real-Time Quiz Platform")
 app.include_router(quiz.router)
+app.include_router(question.router)
 Base.metadata.create_all(bind=engine)
 
 @app.get("/")
