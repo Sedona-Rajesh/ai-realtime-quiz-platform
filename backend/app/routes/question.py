@@ -31,3 +31,10 @@ def create_question(data: QuestionCreate, db: Session = Depends(get_db)):
     db.refresh(question)
 
     return question
+
+
+@router.get("/quiz/{quiz_id}")
+def get_questions_by_quiz(quiz_id: int, db: Session = Depends(get_db)):
+    questions = db.query(Question).filter(Question.quiz_id == quiz_id).all()
+
+    return questions
